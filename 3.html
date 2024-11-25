@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apache Friends Webserver</title>
+</head>
+<body>
+    <textarea id="copyText" style="display: none;" placeholder="Type something;">
+LDA 0000
+MVI B, 00
+JZ ZERO
+RLC
+JC NEG
+MVI A, 11
+JMP DISP
+NEG: MVI A, 22
+JMP DISP
+ZERO: MVI A, 33
+DISP: STA 0000
+HLT
+    </textarea>
+
+    <button onclick="copyToClipboard()">Copy</button>
+
+    <script>
+        function copyToClipboard() {
+            var copyText = document.getElementById("copyText");
+            copyText.style.display = "block"; // Make the textarea visible
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            copyText.style.display = "none"; // Hide the textarea again
+        }
+    </script>
+</body>
+</html>
